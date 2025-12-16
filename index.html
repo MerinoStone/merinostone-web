@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merinostone | Baja California</title>
+    <link rel="stylesheet" href="estilos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <div id="tijuana-lock">
+        <h1 style="color: #d4af37; margin-bottom: 0;">MERINOSTONE</h1>
+        <p style="color: #ccc; margin-top: 5px; font-size: 0.9rem;">BAJA CALIFORNIA</p>
+        <hr style="border: 1px solid #333; width: 60%; margin: 20px 0;">
+        <h2 style="font-size: 1.4rem; margin: 10px 0; color: white;">VERIFICACIÓN DE COBERTURA</h2>
+        <div style="background: rgba(0,0,0,0.8); padding: 15px; border: 1px solid #333; margin: 20px 0;">
+            <p style="color: var(--gold); font-weight: bold; margin: 0; letter-spacing: 1px;">
+                TIJUANA · ROSARITO · TECATE · ENSENADA
+            </p>
+        </div>
+        <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
+            <button class="btn" onclick="confirmarUbicacion(true)">Confirmo mi ubicación</button>
+            <button class="btn" style="background: #333; color: white;" onclick="confirmarUbicacion(false)">Soy de otra ciudad</button>
+        </div>
+    </div>
+
+    <nav>
+        <div class="logo">Merino<span>stone</span></div>
+        <div class="menu">
+            <a href="index.html" class="active">Inicio</a>
+            <a href="cocinas.html">Catálogo</a>
+        </div>
+    </nav>
+
+    <section class="hero" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1920&auto=format&fit=crop');">
+        <div data-aos="fade-up">
+            <h1>La Piedra Angular del Lujo</h1>
+            <p>Empresa experta en instalación de cocinas y baños.</p>
+            <a href="cocinas.html" class="btn">Ver Colección</a>
+        </div>
+    </section>
+
+    <div class="container text-center" style="margin-top: 80px;" data-aos="fade-up">
+        <h2>Transformamos Espacios</h2>
+        <p>Desde residencias en la Ruta del Vino hasta penthouses en Tijuana. <br>Especialistas en cortes a 45° y acabados italianos.</p>
+    </div>
+
+    <div class="container text-center" style="margin-top: 80px;" data-aos="fade-up">
+        <h2 style="color: var(--gold);">El Cambio Merinostone</h2>
+        <p>Desliza para ver la transformación real de una cocina.</p>
+    </div>
+
+    <div class="comparison-section" data-aos="zoom-in">
+        <div class="img-comp-container">
+            <div class="img-comp-img">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1000&auto=format&fit=crop">
+            </div>
+            <div class="img-comp-img img-comp-overlay">
+                <img src="https://images.unsplash.com/photo-1556912173-3db9963f6f0b?q=80&w=1000&auto=format&fit=crop" style="filter: sepia(1) grayscale(0.5);">
+            </div>
+        </div>
+    </div>
+
+    <section class="testimonials">
+        <div class="container">
+            <h2 data-aos="fade-down" class="text-center">Clientes de la Región</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card" data-aos="flip-left">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p>"Excelente instalación de granito. Super puntuales y limpios."</p>
+                    <span class="client-name">Arq. Roberto Méndez</span>
+                    <span class="client-loc">Zona Río, Tijuana</span>
+                </div>
+                <div class="testimonial-card" data-aos="flip-left" data-aos-delay="200">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p>"La barra de ónix en mi restaurante del Valle quedó espectacular."</p>
+                    <span class="client-name">Chef Carlos D.</span>
+                    <span class="client-loc">Valle de Guadalupe</span>
+                </div>
+                <div class="testimonial-card" data-aos="flip-left" data-aos-delay="400">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p>"Gran servicio en Tecate. Me ayudaron a elegir el mejor cuarzo."</p>
+                    <span class="client-name">Sra. Lupita R.</span>
+                    <span class="client-loc">Tecate, B.C.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="margin-top: 50px;">
+        <div class="container text-center">
+            <h2 style="margin-bottom: 20px;">Visita nuestro Showroom</h2>
+            <p>Blvd. Sánchez Taboada, Zona Río, Tijuana.</p>
+        </div>
+        <iframe class="map-section" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3363.882463773177!2d-117.0267713848243!3d32.53030368104593!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80d9484646c2e343%3A0x627582da5f92500c!2sZona%20R%C3%ADo%2C%20Tijuana%2C%20B.C.!5e0!3m2!1ses-419!2smx!4v1645000000000!5m2!1ses-419!2smx" allowfullscreen="" loading="lazy"></iframe>
+    </section>
+
+    <section class="contact-banner" data-aos="zoom-in">
+        <div class="contact-box">
+            <i class="fas fa-mobile-alt icon-gold"></i>
+            <h2 style="color: var(--gold); margin-bottom: 10px;">Atención Personalizada</h2>
+            <p>¿Tienes planos o medidas? Hablemos ahora.</p>
+            
+            <span class="phone-display">664 673 8412</span>
+            
+            <a href="https://wa.me/5216646738412?text=Hola,%20quiero%20cotizar%20un%20proyecto" class="btn-whatsapp-big" target="_blank">
+                <i class="fab fa-whatsapp"></i> Enviar Mensaje
+            </a>
+        </div>
+    </section>
+
+    <a href="https://wa.me/5216646738412?text=Hola,%20visito%20su%20pagina%20web" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <footer>
+        <p>Merinostone Baja California © 2024.</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>AOS.init({ duration: 1000, once: true });</script>
+    <script src="script.js"></script>
+</body>
+</html>
