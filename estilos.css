@@ -370,3 +370,79 @@ footer { text-align: center; padding: 40px; margin-top: 0; background: #000; col
         right: 20px;
     }
 }
+/* --- ESTILOS DEL MENÚ DESPLEGABLE (CONTACTO) --- */
+
+/* Contenedor del botón */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* El botón principal de "Contacto Directo" */
+.dropbtn {
+    cursor: pointer;
+    /* Hereda estilos del menú original pero aseguramos el color */
+    color: white; 
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* El contenido oculto (la cajita que se abre) */
+.dropdown-content {
+    display: none; /* Oculto por defecto */
+    position: absolute;
+    right: 0; /* Alineado a la derecha */
+    background-color: #1a1a1a; /* Fondo oscuro */
+    min-width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.8);
+    border: 1px solid var(--gold); /* Borde dorado de lujo */
+    z-index: 2000;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+/* Los enlaces dentro del desplegable (Facebook, Whats, Tel) */
+.dropdown-content a {
+    color: #e0e0e0 !important; /* Forzamos color claro */
+    padding: 15px 20px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    margin: 0 !important; /* Quitamos margen del menú principal */
+    border-bottom: 1px solid #333;
+    font-size: 0.9rem !important;
+    text-transform: none !important; /* No todo mayúsculas para leer mejor */
+}
+
+/* Efecto Hover en las opciones */
+.dropdown-content a:hover {
+    background-color: #333;
+    color: var(--gold) !important;
+}
+
+/* Clase que agrega JS para mostrar el menú */
+.show {
+    display: block;
+    animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* AJUSTE PARA MÓVIL (Para que no flote, sino que empuje el contenido) */
+@media (max-width: 768px) {
+    .dropdown {
+        width: 100%;
+        text-align: center;
+    }
+    .dropdown-content {
+        position: relative; /* Ya no flota, se pone debajo */
+        width: 100%;
+        box-shadow: none;
+        border: none;
+        border-top: 1px solid var(--gold);
+        margin-top: 5px;
+    }
+}

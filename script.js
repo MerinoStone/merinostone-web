@@ -1,32 +1,50 @@
-// script.js ACTUALIZADO
-
 document.addEventListener("DOMContentLoaded", function() {
+    // 1. VERIFICAR MEMORIA (LocalStorage)
+    // Si ya existe la "llave" de acceso, borramos el bloqueo inmediatamente
+    if (localStorage.getItem("merinostone_access") === "granted") {
+        const lockScreen = document.getElementById("tijuana-lock");
+        if (lockScreen) {
+            lockScreen.style.display = "none";
+        }
+    }
+
+    // 2. INICIAR COMPARADORES DE IMÁGENES
     initComparisons();
-    // El bloqueo se muestra por defecto vía CSS
 });
 
-// --- FUNCIÓN 1: GATEKEEPER ---
+// --- FUNCIÓN 1: GATEKEEPER (CON MEMORIA) ---
 function confirmarUbicacion(estaEnZona) {
     const lockScreen = document.getElementById("tijuana-lock");
+    
     if (estaEnZona) {
+        // GUARDAR EN EL NAVEGADOR DEL USUARIO
+        localStorage.setItem("merinostone_access", "granted");
+        
         alert("Bienvenido a Merinostone. Zona de cobertura confirmada.");
-        if(lockScreen) lockScreen.style.display = "none";
+        if(lockScreen) {
+            // Efecto de desvanecimiento suave (opcional, vía CSS transition)
+            lockScreen.style.opacity = "0";
+            setTimeout(() => {
+                lockScreen.style.display = "none";
+            }, 500); // Espera medio segundo para quitarlo
+        }
     } else {
-        alert("Lo sentimos. Solo cubrimos Tijuana, Rosarito, Tecate y Ensenada.");
+        alert("Lo sentimos. Por el momento solo cubrimos Tijuana, Rosarito, Tecate y Ensenada.");
+        // Redirección a Google para usuarios fuera de zona
         window.location.href = "https://www.google.com"; 
     }
 }
 
 // --- FUNCIÓN 2: WHATSAPP (NÚMERO REAL) ---
 function contactarVendedor(producto) {
-    // NÚMERO ACTUALIZADO SEGÚN TU IMAGEN
     const telefono = "5216646738412"; 
+    // Detectar si es móvil para usar api.whatsapp o web.whatsapp (opcional, wa.me funciona universal)
     const mensaje = `Hola Merinostone. Mi proyecto es en Baja California y me interesa cotizar: ${producto}.`;
     const url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
     window.open(url, '_blank');
 }
 
-// --- FUNCIÓN 3: COMPARADOR ---
+// --- FUNCIÓN 3: COMPARADOR (ANTES / DESPUÉS) ---
 function initComparisons() {
     var x, i;
     x = document.getElementsByClassName("img-comp-overlay");
@@ -80,6 +98,25 @@ function initComparisons() {
         function slide(x) {
             img.style.width = x + "px";
             slider.style.left = img.offsetWidth - (slider.offsetWidth / 2) + "px";
+        }
+    }
+}
+// --- FUNCIÓN 4: MENÚ DESPLEGABLE DE CONTACTO ---
+
+function toggleContacto() {
+    document.getElementById("contactoDropdown").classList.toggle("show");
+}
+
+// Cerrar el menú si el usuario da clic fuera de él
+window.onclick = function(event) {
+    if (!event.target.matches('.dropbtn') && !event.target.closest('.dropbtn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+            }
         }
     }
 }
