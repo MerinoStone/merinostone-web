@@ -337,3 +337,48 @@ footer { text-align: center; padding: 40px; margin-top: 0; background: #000; col
 @media (max-width: 768px) {
     .contact-box { flex: 1 1 100%; width: 100%; }
 }
+/* =========================================
+   ESTILOS PARA VISOR DE PDF (COCINAS.HTML)
+   ========================================= */
+
+.pdf-viewer-container {
+    background: #1a1a1a;
+    border: 1px solid var(--gold);
+    padding: 5px; /* Marco delgado */
+    border-radius: 4px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5); /* Sombra para dar profundidad */
+    margin-bottom: 60px;
+    position: relative;
+}
+
+.pdf-viewer-container iframe {
+    border: none;
+    background-color: #333; /* Fondo gris de carga */
+    display: block;
+}
+
+/* Sección de respaldo (Botón de descarga para móviles) */
+.pdf-fallback {
+    display: none; /* Oculto en PC */
+    padding: 30px;
+    border-top: 1px solid #333;
+    background: #151515;
+}
+
+.pdf-fallback p {
+    color: #ccc;
+    margin-bottom: 15px;
+    font-size: 1rem;
+}
+
+/* --- AJUSTE RESPONSIVE PARA PDF --- */
+@media (max-width: 768px) {
+    .pdf-viewer-container iframe {
+        height: 400px; /* Reducimos altura en celular */
+    }
+    
+    /* Mostramos el botón de descarga porque leer PDF incrustado en celular es difícil */
+    .pdf-fallback {
+        display: block; 
+    }
+}
