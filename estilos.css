@@ -382,3 +382,138 @@ footer { text-align: center; padding: 40px; margin-top: 0; background: #000; col
         display: block; 
     }
 }
+/* --- BARRA DE BENEFICIOS --- */
+.benefits-bar {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    background-color: #111;
+    padding: 30px 0;
+    border-bottom: 1px solid #333;
+    text-align: center;
+}
+.benefit-item {
+    color: var(--gold);
+    margin: 10px 20px;
+    font-size: 1.1rem;
+}
+.benefit-item i {
+    display: block;
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: white;
+}
+/* --- PREGUNTAS FRECUENTES (FAQ) --- */
+.faq-item {
+    margin-bottom: 15px;
+    border: 1px solid #333;
+    border-radius: 4px;
+    background: #1a1a1a;
+}
+.faq-item summary {
+    padding: 15px;
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--gold);
+    list-style: none; /* Quita el triángulo por defecto */
+    position: relative;
+}
+.faq-item summary::after {
+    content: '+'; 
+    position: absolute; 
+    right: 20px; 
+    font-weight: bold;
+}
+.faq-item details[open] summary::after {
+    content: '-';
+}
+.faq-item p {
+    padding: 15px;
+    padding-top: 0;
+    color: #ccc;
+    line-height: 1.6;
+    border-top: 1px solid #333;
+}
+/* --- BARRA DE BENEFICIOS --- */
+.benefits-bar {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    background-color: #111;
+    padding: 30px 0;
+    border-bottom: 1px solid #333;
+    text-align: center;
+    gap: 30px;
+}
+.benefit-item {
+    color: var(--gold);
+    font-size: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 200px;
+}
+.benefit-item i {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: white;
+}
+
+/* --- PREGUNTAS FRECUENTES (FAQ) --- */
+.faq-item {
+    margin-bottom: 15px;
+    border: 1px solid #333;
+    border-radius: 4px;
+    background: #1a1a1a;
+}
+.faq-item summary {
+    padding: 15px;
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--gold);
+    list-style: none; 
+    position: relative;
+}
+.faq-item summary::after {
+    content: '+'; position: absolute; right: 20px; font-weight: bold; color: white;
+}
+.faq-item details[open] summary::after { content: '-'; }
+.faq-item p {
+    padding: 15px; padding-top: 0;
+    color: #ccc; line-height: 1.6;
+    border-top: 1px solid #333;
+}
+/* --- BOTÓN SUBIR (LADO IZQUIERDO) --- */
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 30px; /* Lo bajé un poco para que quede alineado con los otros */
+  left: 30px;   /* AQUÍ ESTÁ EL CAMBIO: Ahora está a la izquierda */
+  z-index: 99;
+  border: none;
+  background-color: var(--gold);
+  color: black;
+  cursor: pointer;
+  padding: 12px;
+  border-radius: 50%;
+  font-size: 18px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+  transition: 0.3s;
+}
+
+#myBtn:hover { 
+  background-color: #aa8c2c; 
+  transform: scale(1.1); 
+}
+
+/* Ajuste para celular */
+@media (max-width: 768px) {
+    #myBtn { 
+        bottom: 30px; 
+        left: 20px; /* Izquierda en celular también */
+        width: 45px; 
+        height: 45px; 
+        font-size: 16px; 
+        padding: 10px; 
+    }
+}
