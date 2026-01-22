@@ -1,23 +1,36 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // 1. VERIFICAR MEMORIA (LocalStorage)
-    if (localStorage.getItem("merinostone_access") === "granted") {
-        const lockScreen = document.getElementById("tijuana-lock");
-        if (lockScreen) {
-            lockScreen.style.display = "none";
-        }
+    
+    // 1. INICIALIZAR LIBRERÍA DE ANIMACIONES (AOS)
+    // Verificamos si la librería cargó correctamente antes de usarla
+    if (typeof AOS !== 'undefined') {
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
     }
 
-    // 2. INICIAR COMPARADORES
+    // 2. VERIFICAR MEMORIA (LocalStorage - Lógica de Cliente)
+    // Nota de Seguridad: Esta validación es visual. En un entorno de alta seguridad,
+    // esto se debe validar por IP en el servidor (Backend).
+    const accessGranted = localStorage.getItem("merinostone_access");
+    const lockScreen = document.getElementById("tijuana-lock");
+
+    if (accessGranted === "granted" && lockScreen) {
+        lockScreen.style.display = "none";
+    }
+
+    // 3. INICIAR COMPARADORES DE IMÁGENES (Si existen en la página)
     initComparisons();
 });
 
-// --- FUNCIÓN 1: GATEKEEPER (CON MEMORIA) ---
-function confirmarUbicacion(estaEnZona) {
+// --- FUNCIÓN 1: GATEKEEPER (VALIDACIÓN DE ZONA) ---
+function validarZona(esLocal) {
     const lockScreen = document.getElementById("tijuana-lock");
     
-    if (estaEnZona) {
+    if (esLocal) {
+        // Usuario confirma ubicación
         localStorage.setItem("merinostone_access", "granted");
-        alert("Bienvenido a Merinostone. Zona de cobertura confirmada.");
+        
         if(lockScreen) {
             lockScreen.style.opacity = "0";
             setTimeout(() => {
@@ -25,20 +38,26 @@ function confirmarUbicacion(estaEnZona) {
             }, 500);
         }
     } else {
+        // Usuario fuera de zona
         alert("Lo sentimos. Por el momento solo cubrimos Tijuana, Rosarito, Tecate y Ensenada.");
+        // Redirección
         window.location.href = "https://www.google.com"; 
     }
 }
 
-// --- FUNCIÓN 2: WHATSAPP ---
+// --- FUNCIÓN 2: WHATSAPP SEGURO ---
+// PARCHE DE SEGURIDAD: Reverse Tabnabbing corregido.
 function contactarVendedor(producto) {
     const telefono = "5216646738412"; 
     const mensaje = `Hola Merinostone. Mi proyecto es en Baja California y me interesa cotizar: ${producto}.`;
     const url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
-    window.open(url, '_blank');
+    
+    // CORRECCIÓN DE SEGURIDAD: 
+    // Se agregan 'noopener,noreferrer' para evitar que la página nueva tenga control sobre tu sitio.
+    window.open(url, '_blank', 'noopener,noreferrer');
 }
 
-// --- FUNCIÓN 3: COMPARADOR (SOPORTA VIDEO Y FOTO) ---
+// --- FUNCIÓN 3: COMPARADOR DE IMÁGENES ---
 function initComparisons() {
     var x, i;
     x = document.getElementsByClassName("img-comp-overlay");
@@ -47,7 +66,7 @@ function initComparisons() {
     }
 
     function compareImages(img) {
-        var slider, img, clicked = 0, w, h;
+        var slider, clicked = 0, w, h;
         w = img.offsetWidth;
         h = img.offsetHeight;
         img.style.width = (w / 2) + "px";
@@ -98,14 +117,17 @@ function initComparisons() {
 
 // --- FUNCIÓN 4: MENÚ DESPLEGABLE DE CONTACTO ---
 function toggleContacto() {
-    document.getElementById("contactoDropdown").classList.toggle("show");
+    var dropdown = document.getElementById("contactoDropdown");
+    if (dropdown) {
+        dropdown.classList.toggle("show");
+    }
 }
 
+// Cerrar el menú si se hace clic fuera
 window.onclick = function(event) {
     if (!event.target.matches('.dropbtn') && !event.target.closest('.dropbtn')) {
         var dropdowns = document.getElementsByClassName("dropdown-content");
-        var i;
-        for (i = 0; i < dropdowns.length; i++) {
+        for (var i = 0; i < dropdowns.length; i++) {
             var openDropdown = dropdowns[i];
             if (openDropdown.classList.contains('show')) {
                 openDropdown.classList.remove('show');
@@ -113,19 +135,25 @@ window.onclick = function(event) {
         }
     }
 }
-// --- BOTÓN VOLVER ARRIBA ---
+
+// --- FUNCIÓN 5: BOTÓN VOLVER ARRIBA ---
 let mybutton = document.getElementById("myBtn");
 
-window.onscroll = function() {scrollFunction()};
+// Solo activamos el evento si el botón existe en la página actual
+if (mybutton) {
+    window.onscroll = function() { scrollFunction() };
+}
 
 function scrollFunction() {
-  if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
-    mybutton.style.display = "block";
-  } else {
-    mybutton.style.display = "none";
-  }
+    if (!mybutton) return; // Seguridad extra
+    
+    if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
+        mybutton.style.display = "block";
+    } else {
+        mybutton.style.display = "none";
+    }
 }
 
 function topFunction() {
-  window.scrollTo({top: 0, behavior: 'smooth'});
+    window.scrollTo({top: 0, behavior: 'smooth'});
 }
